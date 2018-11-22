@@ -1,0 +1,110 @@
+To install on a remote linux using wget:
+https://stackoverflow.com/questions/38080407/how-can-i-install-the-latest-anaconda-with-wget
+
+Conda documentation:
+https://conda.io/docs/user-guide/getting-started.html
+
+Check conda version:
+conda --version
+
+update conda to current version:
+conda update conda
+
+create the environment snowflaks and install the package BioPython
+conda create --name snowflakes biopython
+
+to activate the new env:
+source activate snowflakes
+
+to see a list of all environments:
+conda info --envs
+
+change env back to the default (base):
+source deactivate
+
+When you create a new environment, conda installs the same Python version you used when you downloaded and installed Anaconda. If you want to use a different version of Python, for example Python 3.5, simply create a new environment and specify the version of Python that you want. 
+
+Create a new environment named “snakes” that contains Python 3.5:
+conda create --name snakes python=3.5
+
+Search if a package you have no installed named "beautifulsoup4" is available from the anaconda repo:
+conda search beautifulsoup4
+
+install the package into the current environment
+conda install beautifulsoup4
+
+check to see if the newly installed program is in this env:
+conda list
+
+install tab autocomplete
+https://conda.io/docs/user-guide/configuration/enable-tab-completion.html
+
+To create an environment with a specific version of Python and multiple packages:
+conda create -n myenv python=3.4 scipy=0.15.0 astroid babel
+TIP: Install all the programs that you want in this environment at the same time. Installing 1 program at a time can lead to dependency conflicts.
+
+Create the environment from the environment.yml file:
+conda env create -f environment.yml
+
+Cloning an environment:
+conda create --name myclone --clone myenv
+
+Run conda list --explicit to produce a spec list
+
+conda list --explicit > spec-file.txt
+
+An explicit spec file is not usually cross platform, and therefore has a comment at the top such as # platform: osx-64 showing the platform where it was created. This platform is the one where this spec file is known to work. On other platforms, the packages specified might not be available or dependencies might be missing for some of the key packages already in the spec.
+
+To use the spec file to create an identical environment on the same machine or another machine:
+conda create --name myenv --file spec-file.txt
+
+To use the spec file to install its listed packages into an existing environment:
+conda install --name myenv --file spec-file.txt
+
+View a list of packages in an env. If the environment is not activated, in your Terminal window or an Anaconda Prompt, run:
+conda list -n myenv
+
+To see if a specific package is installed in an environment, in your Terminal window or an Anaconda Prompt, run
+conda list -n myenv scipy
+
+Locate the directory for the conda environment in your Terminal window by running in the terminal
+echo $CONDA_PREFIX
+
+Exporting the env file. 
+- activate the env to export
+export your active env to a new file:
+conda env export > environment.yml
+
+create an env file manually:
+https://conda.io/docs/user-guide/tasks/manage-environments.html#cloning-an-environment
+
+remove an env:
+conda remove --name myenv --all
+
+installing packages:
+to install a specific package such as Scipy into an existing env "myenv"
+conda install --name myenv scipy
+
+if you do not specify the env name, the package installs into the current env:
+conda install scipy
+
+to install a specific version of a package such as scipy:
+conda install scipy=0.15.0
+
+If a package is not available from conda or Anaconda.org, you may be able to find and install the package with another package manager like pip.
+
+Pip packages do not have all the features of conda packages, and we recommend first trying to install any package with conda. If the package is unavailable through conda, try installing it with pip. The differences between pip and conda packages cause certain unavoidable limits in compatibility, but conda works hard to be as compatible with pip as possible.
+
+to update a specific package
+conda update biopython
+conda update python
+
+remove a package in myenv env
+conda remove -n myenv scipy
+remove a package in the current env
+conda remove scipy
+
+
+
+conda cheat sheet
+https://conda.io/docs/_downloads/conda-cheatsheet.pdf
